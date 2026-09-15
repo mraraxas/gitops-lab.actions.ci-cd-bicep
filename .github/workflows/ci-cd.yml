@@ -90,7 +90,7 @@ jobs:
           subscriptionId: ${{env.AZURE_SUB}}
           resourceGroupName: ${{env.AZURE_RG}}
           template: ${{runner.temp}}/templates/webapp.bicep
-          parameters: location=${{env.AZURE_LOCATION}} appname=${{env.AZURE-WEBAPP-NAME}}
+          parameters: location=${{env.AZURE_LOCATION}} appName=${{env.AZURE-WEBAPP-NAME}}
 
       - name: Download Publish
         uses: actions/download-artifact@v4
