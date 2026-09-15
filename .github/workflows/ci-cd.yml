@@ -1,13 +1,6 @@
 name: CI-CD
 
 
-jobs: 
-    Build-Job:
-      runs-on: ubuntu-latest
-      env:
-        configuration: release
-
-
 on:
   push:
       branches:
@@ -18,15 +11,13 @@ on:
         branches: [ main ]
       workflow_dispatch:
 
+    jobs: 
+    Build-Job:
+      runs-on: ubuntu-latest
+      env:
+        configuration: release
 
-env: 
-  AZURE_RG: RG3
-  AZURE_SUB: bac81dbc-00c9-4a7a-a1c9-60fd45e8b158
-  AZURE_LOCATION: WestEurope
-
-
-
- steps:
+steps:
     - name: Checkout Sources
       uses: actions/checkout@v4
     - name: Setup .NET
@@ -41,3 +32,11 @@ env:
       run: dotnet test --no-build --verbosity normal --configuration ${{env.configuration}}
     - name: Publish
       run: dotnet publish --configuration ${{env.configuration}} --output ${{runner.temp}}/publish
+
+
+env: 
+  AZURE_RG: RG3
+  AZURE_SUB: bac81dbc-00c9-4a7a-a1c9-60fd45e8b158
+  AZURE_LOCATION: WestEurope
+
+
