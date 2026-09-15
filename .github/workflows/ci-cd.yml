@@ -37,7 +37,7 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration ${{env.configuration}} --output ${{runner.temp}}/publish
 
-  RG_Jobs:
+  RG-Job:
     runs-on: ubuntu-latest
     needs: Build-Job
 
