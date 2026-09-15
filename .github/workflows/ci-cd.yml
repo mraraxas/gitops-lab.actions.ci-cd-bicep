@@ -37,6 +37,19 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration ${{env.configuration}} --output ${{runner.temp}}/publish
 
+    - name: Upload the publish artifact
+      uses: action/upload-artifact@v4
+      with:
+        name: publish_artifact
+        path: ${{runner.temp}}/publish
+        retention-days: 30
+    - name: upload a templates artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: templates_artifact
+        path: ./templates/*
+        retention-days: 30
+
   RG-Job:
     runs-on: ubuntu-latest
     needs: Build-Job
