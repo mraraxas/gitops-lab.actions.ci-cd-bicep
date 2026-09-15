@@ -1,4 +1,13 @@
-name: CD-CD
+name: CI-CD
+
+
+jobs: 
+    Build-Job:
+      runs-on: ubuntu-latest
+      env:
+        configuration: release
+
+
 on:
   push:
       branches:
@@ -16,13 +25,8 @@ env:
   AZURE_LOCATION: WestEurope
 
 
-  jobs: 
-    Build-Job:
-      runs-on: ubuntu-latest
-      env:
-        configuration: release
 
-  steps:
+ steps:
     - name: Checkout Sources
       uses: actions/checkout@v4
     - name: Setup .NET
